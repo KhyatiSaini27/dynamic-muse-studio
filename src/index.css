@@ -2,9 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+input {
+  color: black;  /* User ke likhe hue text ka color */
+}
+
+input::placeholder {
+  color: gray; /* Placeholder ka color (agar chahiye to alag rakh sakte ho) */
+}
+
 
 @layer base {
   :root {
