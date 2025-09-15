@@ -2,14 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-input {
-  color: black;  /* User ke likhe hue text ka color */
-}
-
-input::placeholder {
-  color: gray; /* Placeholder ka color (agar chahiye to alag rakh sakte ho) */
-}
-
 
 @layer base {
   :root {
