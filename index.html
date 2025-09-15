@@ -1,25 +1,109 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reality Controller - Interactive Physics Playground</title>
-    <meta name="description" content="Control digital reality with natural language commands. Transform physics, colors, and animations in real-time with an interactive web playground." />
-    <meta name="author" content="Lovable" />
-    <meta name="keywords" content="interactive physics, web playground, natural language commands, digital art, creative coding" />
+    <meta name="description" content="Control digital reality with natural language commands. Transform physics, colors, and animations in real-time with an interactive web playground.">
+    <meta name="author" content="Lovable">
+    <meta name="keywords" content="interactive physics, web playground, natural language commands, digital art, creative coding">
+    
+    <meta property="og:title" content="Reality Controller - Interactive Physics Playground">
+    <meta property="og:description" content="Control digital reality with natural language commands. Transform physics, colors, and animations in real-time.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@lovable_dev">
+    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="root">
+        <main class="min-h-screen cosmic-background flex flex-col">
+            <!-- Header -->
+            <header class="relative z-10 p-8">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h1 class="text-4xl md:text-6xl font-bold bg-gradient-neon bg-clip-text text-transparent mb-4 tracking-tight">
+                        Reality Controller
+                    </h1>
+                    <p class="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                        Bend the laws of physics with natural language. Watch as your commands transform the digital realm in real-time.
+                    </p>
+                </div>
+            </header>
 
-    <meta property="og:title" content="Reality Controller - Interactive Physics Playground" />
-    <meta property="og:description" content="Control digital reality with natural language commands. Transform physics, colors, and animations in real-time." />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+            <!-- Main Content -->
+            <div class="flex-1 relative z-10 px-8 space-y-8">
+                <!-- Command Interface -->
+                <div class="glass-panel p-6 max-w-2xl mx-auto">
+                    <div class="flex items-center gap-3 mb-4">
+                        <svg class="w-5 h-5 text-neon-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <rect x="4" y="3" width="16" height="14" rx="2"></rect>
+                            <path d="M8 21l4-7 4 7"></path>
+                        </svg>
+                        <h2 class="text-lg font-semibold text-foreground">Reality Controller</h2>
+                    </div>
+                    
+                    <form id="command-form" class="flex gap-3 mb-4">
+                        <input
+                            id="command-input"
+                            type="text"
+                            placeholder="Type your command... (e.g., 'turn off gravity')"
+                            class="flex-1 px-4 py-2 bg-black/20 border border-white/20 text-foreground placeholder-muted-foreground rounded-lg focus:border-neon-cyan focus:outline-none transition-colors"
+                        />
+                        <button 
+                            id="submit-btn"
+                            type="submit" 
+                            class="px-4 py-2 bg-gradient-neon border-0 text-black rounded-lg hover:scale-105 transition-transform neon-glow disabled:opacity-50"
+                        >
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                            </svg>
+                        </button>
+                    </form>
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@lovable_dev" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-  </head>
+                    <div class="space-y-2">
+                        <p class="text-sm text-muted-foreground">Try these commands:</p>
+                        <div id="suggested-commands" class="flex flex-wrap gap-2">
+                            <!-- Suggested commands will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
 
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+                <!-- Visual Playground -->
+                <div class="max-w-4xl mx-auto">
+                    <div id="playground" class="relative w-full h-96 glass-panel overflow-hidden">
+                        <!-- Playground elements will be created by JavaScript -->
+                        
+                        <!-- Status indicators -->
+                        <div id="status-indicators" class="absolute top-4 left-4 space-y-1">
+                            <!-- Status indicators will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feedback Display -->
+                <div id="feedback-display" class="glass-panel p-4 max-w-2xl mx-auto opacity-0 transition-opacity duration-300">
+                    <div class="flex items-center gap-2">
+                        <div class="w-2 h-2 bg-neon-cyan rounded-full animate-pulse"></div>
+                        <span id="feedback-text" class="text-sm text-muted-foreground"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="relative z-10 p-8">
+                <div class="max-w-4xl mx-auto text-center">
+                    <p class="text-sm text-muted-foreground/70">
+                        Built with passion for interactive experiences
+                    </p>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
 </html>
