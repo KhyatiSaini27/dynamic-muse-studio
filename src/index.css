@@ -8,35 +8,54 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 224 71% 4%;
+    --foreground: 213 31% 91%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 224 71% 4%;
+    --card-foreground: 213 31% 91%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 224 71% 4%;
+    --popover-foreground: 213 31% 91%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 224 71% 4%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 222 84% 5%;
+    --secondary-foreground: 213 31% 91%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 223 47% 11%;
+    --muted-foreground: 215.4 16.3% 56.9%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 216 12% 84%;
+    --accent-foreground: 224 71% 4%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 216 12% 16%;
+    --input: 216 12% 16%;
+    --ring: 263 70% 50%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
+
+    /* Interactive Design System */
+    --neon-cyan: 180 100% 50%;
+    --neon-green: 120 100% 50%;
+    --neon-purple: 270 100% 50%;
+    --neon-pink: 330 100% 50%;
+    
+    --glass-bg: 224 71% 4% / 0.3;
+    --glass-border: 213 31% 91% / 0.1;
+    
+    --glow-cyan: 0 0 20px hsl(var(--neon-cyan) / 0.5);
+    --glow-green: 0 0 20px hsl(var(--neon-green) / 0.5);
+    --glow-purple: 0 0 20px hsl(var(--neon-purple) / 0.5);
+    
+    --gradient-cosmic: linear-gradient(135deg, hsl(224 71% 4%) 0%, hsl(267 57% 14%) 50%, hsl(224 71% 4%) 100%);
+    --gradient-neon: linear-gradient(45deg, hsl(var(--neon-cyan)) 0%, hsl(var(--neon-purple)) 100%);
+    
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --sidebar-background: 0 0% 98%;
 
@@ -101,5 +120,82 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    background: var(--gradient-cosmic);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply backdrop-blur-xl border border-white/10 bg-white/5 rounded-xl;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  }
+  
+  .neon-glow {
+    @apply transition-all duration-300;
+    filter: drop-shadow(var(--glow-cyan));
+  }
+  
+  .neon-glow:hover {
+    filter: drop-shadow(var(--glow-purple));
+  }
+  
+  .floating-element {
+    @apply transition-transform duration-1000 ease-out;
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .physics-disabled {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  .gravity-off {
+    animation: float-up 2s ease-out forwards;
+  }
+  
+  .exploded {
+    animation: explode 1s ease-out forwards;
+  }
+  
+  .spinning {
+    animation: spin 2s linear infinite;
+  }
+  
+  .raining {
+    animation: rain-fall 3s linear infinite;
+  }
+}
+
+@layer utilities {
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    25% { transform: translateY(-10px) rotate(1deg); }
+    50% { transform: translateY(-5px) rotate(0deg); }
+    75% { transform: translateY(-15px) rotate(-1deg); }
+  }
+  
+  @keyframes float-up {
+    from { transform: translateY(0); }
+    to { transform: translateY(-100vh); }
+  }
+  
+  @keyframes explode {
+    0% { transform: scale(1) rotate(0deg); }
+    100% { 
+      transform: scale(0.1) rotate(720deg) translateX(var(--random-x, 200px)) translateY(var(--random-y, -200px)); 
+      opacity: 0;
+    }
+  }
+  
+  @keyframes rain-fall {
+    0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+  }
+  
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 20px hsl(var(--neon-cyan) / 0.5); }
+    50% { box-shadow: 0 0 40px hsl(var(--neon-purple) / 0.8); }
   }
 }
